@@ -1,24 +1,7 @@
-# README
+# Tea Subscription Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Table of Contents
+[Schema Design](#schema-design)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Schema Design
+![Screen Shot 2021-06-02 at 11 31 23 AM](https://user-images.githubusercontent.com/72848529/120528430-b0960880-c398-11eb-9f34-50504b57d89d.png)
