@@ -10,10 +10,10 @@ RSpec.describe 'delete customer subscription' do
       @subscription1 = Subscription.first
       @subscription2 = Subscription.second
       
-      @sub1 = SubscriptionCustomer.create(customer: @customer1, subscription: @subscription1)
-      @sub2 = SubscriptionCustomer.create(customer: @customer2, subscription: @subscription2)
+      @sub1 = CustomerSubscription.create(customer: @customer1, subscription: @subscription1)
+      @sub2 = CustomerSubscription.create(customer: @customer2, subscription: @subscription2)
 
-      delete api_v1_subscription_customer_path(@subscription1, customer_id: @customer1.id)
+      delete api_v1_customer_subscription_path(@customer1, subscription_id: @subscription1.id)
 
       @result = JSON.parse(response.body, symbolize_names: true)
     end
@@ -26,7 +26,7 @@ RSpec.describe 'delete customer subscription' do
 
     it 'will delete the subscription customer' do
 
-      expect(SubscriptionCustomer.all).to_not include(@sub1)
+      expect(CustomerSubscription.all).to_not include(@sub1)
     end
 
     it 'outputs the correct response' do
@@ -36,7 +36,7 @@ RSpec.describe 'delete customer subscription' do
       expect(@result[:data]).to have_key(:id)
       expect(@result[:data][:id].to_i).to eq(@sub1.id)
       expect(@result[:data]).to have_key(:type)
-      expect(@result[:data][:type]).to eq("subscription_customer")
+      expect(@result[:data][:type]).to eq("customer_subscription")
       expect(@result[:data]).to have_key(:attributes)
 
       expect(@result[:data][:attributes]).to have_key(:customer)
@@ -46,7 +46,7 @@ RSpec.describe 'delete customer subscription' do
 
   describe 'sad path' do
     it 'will return 404 if no subscription customer is found' do
-      delete api_v1_subscription_customer_path(0, customer_id: 0)
+      delete api_v1_customer_subscription_path(0, subscription_id: 0)
       result = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(404)

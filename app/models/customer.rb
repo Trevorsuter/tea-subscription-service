@@ -4,6 +4,6 @@ class Customer < ApplicationRecord
   validates :email, presence: true
   validates :address, presence: true
 
-  has_many :subscription_customers
-  has_many :subscriptions, through: :subscription_customers
+  has_many :customer_subscriptions
+  has_many :subscriptions, through: :customer_subscriptions
 end
