@@ -45,5 +45,12 @@ RSpec.describe 'delete customer subscription' do
   end
 
   describe 'sad path' do
+    it 'will return 404 if no subscription customer is found' do
+      delete api_v1_subscription_customer_path(0, customer_id: 0)
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(404)
+      expect(result[:message]).to eq("This record does not exist")
+    end
   end
 end

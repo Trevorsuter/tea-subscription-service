@@ -12,7 +12,7 @@ class Api::V1::SubscriptionCustomersController < ApplicationController
   def destroy
     @sc = SubscriptionCustomer.find_by(customer_id: params[:customer_id], subscription_id: params[:subscription_id])
     if @sc.nil?
-      render json: {message: "This record does not exist", errors: []}
+      render json: {message: "This record does not exist", errors: []}, status: 404
     else
       @sc.destroy
       render json: SubscriptionCustomerSerializer.new(@sc), status: 200
