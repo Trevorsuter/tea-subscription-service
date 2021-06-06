@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :subscription_customer do
+  factory :customer_subscription do
     customer { nil }
     subscription { nil }
   end

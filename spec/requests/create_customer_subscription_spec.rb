@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'create subscription customer' do
+RSpec.describe 'create customer subscription' do
   describe 'happy path' do
     before :each do
       create_list :customer, 5
@@ -8,9 +8,9 @@ RSpec.describe 'create subscription customer' do
       @customer1 = Customer.first
       @subscription1 = Subscription.first
       headers = {'CONTENT_TYPE' => 'application/json'}
-      body = {customer_id: @customer1.id}.to_json
-
-      post api_v1_subscription_customers_path(@subscription1), headers: headers, params: body
+      body = {subscription_id: @subscription1.id}.to_json
+      
+      post api_v1_customer_subscriptions_index_path(@customer1), headers: headers, params: body
 
       @result = JSON.parse(response.body, symbolize_names: true)
     end
@@ -22,7 +22,7 @@ RSpec.describe 'create subscription customer' do
     end
 
     it 'creates a subscription customer' do
-      subscription_customer = SubscriptionCustomer.find_by(customer: @customer1, subscription: @subscription1)
+      subscription_customer = CustomerSubscription.find_by(customer: @customer1, subscription: @subscription1)
       
       expect(subscription_customer.customer).to eq(@customer1)
       expect(subscription_customer.subscription).to eq(@subscription1)
@@ -47,9 +47,9 @@ RSpec.describe 'create subscription customer' do
       create_list :customer, 5
       create_list :subscription_tea, 5
       headers = {'CONTENT_TYPE' => 'application/json'}
-      @subscription1 = Subscription.first
+      @customer1 = Customer.first
 
-      post api_v1_subscription_customers_path(@subscription1), headers: headers
+      post api_v1_customer_subscriptions_path(@customer1), headers: headers
 
       expect(response.status).to eq(400)
     end
@@ -58,14 +58,14 @@ RSpec.describe 'create subscription customer' do
       create_list :customer, 5
       create_list :subscription_tea, 5
       headers = {'CONTENT_TYPE' => 'application/json'}
-      @subscription1 = Subscription.first
+      @customer1 = Customer.first
 
-      post api_v1_subscription_customers_path(@subscription1), headers: headers
+      post api_v1_customer_subscriptions_path(@customer1), headers: headers
 
       result = JSON.parse(response.body, symbolize_names: true)
 
       expect(result).to have_key(:errors)
-      expect(result[:errors]).to include("Customer must exist")
+      expect(result[:errors]).to include("Subscription must exist")
     end
   end
 end
