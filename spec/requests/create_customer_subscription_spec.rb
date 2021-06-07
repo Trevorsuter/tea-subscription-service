@@ -36,8 +36,8 @@ RSpec.describe 'create customer subscription' do
       expect(@result[:data]).to have_key(:type)
       expect(@result[:data]).to have_key(:attributes)
 
-      expect(@result[:data][:attributes]).to have_key(:customer)
-      expect(@result[:data][:attributes]).to have_key(:subscription)
+      expect(@result[:data][:attributes]).to have_key(:customer_id)
+      expect(@result[:data][:attributes]).to have_key(:subscription_id)
     end
 
   end
