@@ -39,8 +39,8 @@ RSpec.describe 'delete customer subscription' do
       expect(@result[:data][:type]).to eq("customer_subscription")
       expect(@result[:data]).to have_key(:attributes)
 
-      expect(@result[:data][:attributes]).to have_key(:customer)
-      expect(@result[:data][:attributes]).to have_key(:subscription)
+      expect(@result[:data][:attributes]).to have_key(:customer_id)
+      expect(@result[:data][:attributes]).to have_key(:subscription_id)
     end
   end
 
