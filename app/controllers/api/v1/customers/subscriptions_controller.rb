@@ -1,4 +1,4 @@
-class Api::V1::Customer::SubscriptionsController < ApplicationController
+class Api::V1::Customers::SubscriptionsController < ApplicationController
 
   def index
     @customer = Customer.find_by(id: params[:customer_id])
