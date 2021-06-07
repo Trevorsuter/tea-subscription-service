@@ -32,7 +32,7 @@
 `bundle exec rspec`
 ***
 ## Schema Design
-![Screen Shot 2021-06-02 at 11 31 23 AM](https://user-images.githubusercontent.com/72848529/120528430-b0960880-c398-11eb-9f34-50504b57d89d.png)
+![Screen Shot 2021-06-07 at 8 57 41 AM](https://user-images.githubusercontent.com/72848529/121039567-6df47780-c76e-11eb-9265-2c8ec111bf4d.png)
 ***
 ## Running the App
 - To run this app, execute `rails s` in your CLI
